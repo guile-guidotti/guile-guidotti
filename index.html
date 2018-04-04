@@ -1,0 +1,16 @@
+<head>
+	<script type="text/javascript">
+		function verificar() {
+			var possui = document.getElementById("possui").value.split(",");
+			var repetidas = document.getElementById("repetidas").value.split(",");
+			var precisa = repetidas.filter(function(i) { return possui.indexOf(i) < 0; });
+			document.getElementById("precisa").innerHTML = precisa; 
+		}
+	</script>
+</head>
+<body>
+	Possui: <br><textarea type="text" id="possui"></textarea><br>
+	Repetidas: <br><textarea type="text" id="repetidas"></textarea><br>
+	<button onclick="verificar()">Verificar</button>
+	<p id="precisa"></p>
+</body>
