@@ -6,8 +6,16 @@
 	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<script type="text/javascript">
 		function verificar() {
-			var possui = document.getElementById("possui").value.split(",");
-			var repetidas = document.getElementById("repetidas").value.split(",");
+			var possui = document.getElementById('possui').value;
+			possui = possui.replace(' Baixe também esse app em http://bit.ly/2Ga6Jo4', '');
+			possui = possui.replace('Minhas figurinhas do álbum da copa 2018 que eu tenho são as: ', '');
+			possui = possui.replace(/(?:\r\n|\r|\n)/g, '');
+			possui = possui.trim().split(',');
+			var repetidas = document.getElementById("repetidas").value;
+			repetidas = repetidas.replace(' Baixe também esse app em http://bit.ly/2Ga6Jo4', '');
+			repetidas = repetidas.replace('Minhas figurinhas do álbum da copa 2018 repetidas são as: ', '');
+			repetidas = repetidas.replace(/(?:\r\n|\r|\n)/g, '');
+			repetidas = repetidas.trim().split(',');
 			var precisa = repetidas.filter(function(i) { return possui.indexOf(i) < 0; });
 			document.getElementById("precisa").innerHTML = precisa; 
 		}
@@ -16,20 +24,24 @@
 <body style="font-size:14px">
 	<div class="container">
 		<div class="row">
-			<form class="col-lg-4">
+			<form class="col-md-12 col-sm-4">
 				<fieldset>
 				<div class="form-group">
 					<label for="possui">Possui: </label>
-					<textarea class="form-control" type="text" id="possui"></textarea><br>
+					<textarea class="form-control" type="text" id="possui" rows="5"></textarea><br>
 				</div>
 				<div class="form-group">
 					<label for="repetidas">Repetidas: </label>
-					<textarea class="form-control" type="text" id="repetidas"></textarea><br>
+					<textarea class="form-control" type="text" id="repetidas" rows="5"></textarea><br>
 				</div>
 				<button onclick="verificar(); return false;" class="btn btn-primary">Verificar</button>
 				</fieldset>
 			</form>
-			<p id="precisa" style="word-break: break-all"></p>
+			<div class="row">
+				<div class="col-md-12 col-sm-4">
+					<p id="precisa" class="lead" style="word-break: break-all"></p>
+				</div>
+			</div>
 		</div>
 	</div>
 </body>
